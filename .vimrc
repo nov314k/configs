@@ -1,0 +1,44 @@
+set bs=2 "Required when working in MSYS2
+set exrc
+syntax on
+set secure
+set number
+set ff=unix
+set autoread
+"set t_Co=256
+set enc=utf-8
+set fenc=utf-8
+set showmatch
+set termencoding=utf-8
+filetype plugin indent on
+set guifont=Liberation\ Mono:h12
+set comments=sl:/*,mb:\ *,elx:\ */ "Intelligent comments
+:colorscheme desert
+"
+"Dealing with 80+ columns
+"""""""""""""""""""""""""
+set colorcolumn=81
+highlight ColorColumn ctermbg=White ctermfg=DarkRed
+"This line is to make 80+ columns highlighted as well
+"execute "set colorcolumn=" . join(range(81,335), ',')
+"
+"Custom key bindings
+""""""""""""""""""""
+"In normal mode, F2 saves the file
+nmap <F2> :w<CR>
+"In insert mode, F2 exits insert, saves the file, and enters insert mode again
+imap <F2> <ESC>:w<CR>
+"
+"Code highlighting and indenting
+""""""""""""""""""""""""""""""""
+set tabstop=8
+set softtabstop=8
+set shiftwidth=3
+set noexpandtab
+set autoindent
+"set smartindent "Apparently, it should not be used with autoindent
+set cindent
+"
+"Unknown setting that should not be deleted
+"""""""""""""""""""""""""""""""""""""""""""
+au GUIEnter * simalt ~x
