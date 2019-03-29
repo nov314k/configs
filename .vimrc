@@ -27,13 +27,13 @@ highlight ColorColumn ctermbg=White ctermfg=DarkRed
 "In normal mode, F2 saves the file
 nmap <F2> :w<CR>
 "In insert mode, F2 exits insert, saves the file, and enters insert mode again
-imap <F2> <ESC>:w<CR>
+imap <F2> <ESC>:w<CR>i
 "
 "Code highlighting and indenting
 """"""""""""""""""""""""""""""""
-set tabstop=8
-set softtabstop=8
-set shiftwidth=3
+set tabstop=4
+set shiftwidth=4
+"set softtabstop=8
 set noexpandtab
 set autoindent
 "set smartindent "Apparently, it should not be used with autoindent
