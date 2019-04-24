@@ -1,0 +1,60 @@
+dailyFileName = "E:\\dev\\0\\Dropbox\\Dropbox\\daily.pmd.txt";
+todayFileName = "E:\\dev\\0\\Dropbox\\Dropbox\\today.pmd.txt";
+closeMe = false;
+newContent = "";
+
+file = jEdit.openFile(view, dailyFileName);
+VFSManager.waitForRequests();
+if (file == null) {
+	Macros.error(view, "File could not be opened");
+	return;
+}
+
+startLine = -1;
+numLines = file.getLineCount();
+for (i = 0; i < numLines; i++) {
+	line = file.getLineText(i);
+	if (line.contains("`begin")) {
+		startLine = i + 1;
+		break;
+	}
+}
+
+if (startLine > 0) {
+	endFound = false;
+	for (i = startLine; i < numLines; i++) {
+		line = file.getLineText(i);
+		if (line.contains("`end")) {
+			endFound = true;
+		} else if (!endFound) {
+			newContent += line + '\n';
+		}
+	}
+}
+
+if (closeMe) {
+	jEdit.closeBuffer(view, file);
+}
+
+file = jEdit.openFile(view, todayFileName);
+VFSManager.waitForRequests();
+if (file == null) {
+	Macros.error(view, "File could not be opened");
+	return;
+}
+
+numLines = file.getLineCount();
+for (i = 0; i < numLines; i++) {
+	line = file.getLineText(i);
+	newContent += line;
+	if (i != numLines - 1) {
+		newContent += '\n';
+	}
+}
+
+if (closeMe) {
+	jEdit.closeBuffer(view, file);
+}
+
+textArea.setText(newContent);
+textArea.setCaretPosition(0);

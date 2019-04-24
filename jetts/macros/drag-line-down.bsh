@@ -1,0 +1,33 @@
+selectedLines = textArea.getSelectedLines().length;
+if (selectedLines == 1) {
+	textArea.goToStartOfLine(false);
+	textArea.goToEndOfLine(true);
+	sel = textArea.getSelectedText();
+	textArea.setSelectedText("");
+	textArea.goToStartOfLine(false);
+	textArea.goToNextLine(false);
+	textArea.goToStartOfLine(false);
+	textArea.backspace();
+	textArea.goToEndOfLine(false);
+	buffer.insert(textArea.getCaretPosition(), "\n" + sel);
+} else {
+	sel = textArea.getSelectedText();
+	textArea.setSelectedText("");
+	int caretCurrent = textArea.getCaretPosition();
+	//Macros.message(view, caretCurrent.toString());
+	textArea.goToBufferEnd(false);
+	//Macros.message(view, caretCurrent.toString());
+	int caretEnd = textArea.getCaretPosition();
+	if (caretCurrent == caretEnd) {
+		textArea.setCaretPosition(caretCurrent);	
+		textArea.setSelectedText(sel);
+	} else {
+		textArea.setCaretPosition(caretCurrent);
+		textArea.goToEndOfLine(false);
+		buffer.insert(textArea.getCaretPosition(), "\n" + sel);
+		textArea.backspace();
+		for (int i = 0; i < selectedLines - 1; i++) textArea.goToPrevLine(false);
+		textArea.goToStartOfLine(false);
+		for (int i = 0; i < selectedLines; i++) textArea.goToNextLine(true);
+	}
+}

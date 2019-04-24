@@ -1,0 +1,98 @@
+import java.text.SimpleDateFormat;
+
+boolean isNumber(char c) {
+	switch (c) {
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+			return true;
+		default:
+			return false;
+	}
+}
+
+int getQuantity(String recTag) {
+	String quantity = "";
+	for (int i = 0; i < recTag.length(); i++) {
+		if (isNumber(recTag.charAt(i))) {
+			quantity += recTag.charAt(i);
+		}
+	}
+	return Integer.parseInt(quantity);
+}
+
+String getTagValue(String line, String tag) {
+	value = "";
+	idx = line.indexOf(tag);
+	if (idx < 0) {
+		return "";
+	}
+	if (!line.substring(idx, line.length()).contains(" ")) {
+		return line.substring(idx + tag.length(), line.length());
+	}
+	currentPosition = idx + tag.length();
+	nextLetter = line.substring(currentPosition, currentPosition + 1);
+	while (!nextLetter.equals(" ") && currentPosition + 1 < line.length()) {
+		value += nextLetter;
+		currentPosition++;
+		nextLetter = line.substring(currentPosition, currentPosition + 1);
+	}
+	return value;
+}
+
+textArea.goToStartOfWhiteSpace(false);
+textArea.goToEndOfWhiteSpace(true);
+String line = textArea.getSelectedText();
+// These were used for deleting priority letters in done tasks
+// if (line.charAt(0) == '(' && line.charAt(2) == ')') {
+//		textArea.setSelectedText(line.substring(4, line.length()));
+// }
+textArea.goToStartOfWhiteSpace(false);
+if (line.charAt(0) == '-' && line.charAt(1) == ' ') { 
+	textArea.setSelectedText("x ");
+  String formatPattern = "yyyy-MM-dd";
+  Calendar date = Calendar.getInstance();
+  SimpleDateFormat format = new SimpleDateFormat(formatPattern);
+  String dateString = format.format(date.getTime());
+  textArea.setSelectedText(dateString + " ");
+  textArea.goToStartOfWhiteSpace(false);
+  if (line.contains("rec:")) {
+  	textArea.goToEndOfWhiteSpace(false);
+  	textArea.insertEnterAndIndent();
+	  String dueTag = getTagValue(line, "due:");
+	  String recTag = getTagValue(line, "rec:");
+	  // + is from the due date, without + is from "today"
+	  int quantity = getQuantity(recTag);
+	  if (recTag.contains("+")) {
+	  	numbers = dueTag.split("-");
+	  	year = Integer.parseInt(numbers[0]);
+	  	month = Integer.parseInt(numbers[1]) - 1;
+	  	day = Integer.parseInt(numbers[2]);
+	  	date.set(year, month, day);
+	  	if (recTag.contains("d")) date.add(Calendar.DAY_OF_MONTH, quantity);
+	  	if (recTag.contains("m")) date.add(Calendar.MONTH, quantity);
+	  	if (recTag.contains("y")) date.add(Calendar.YEAR, quantity);
+	  } else {
+	  	if (recTag.contains("d")) date.add(Calendar.DAY_OF_MONTH, quantity);
+	  	if (recTag.contains("m")) date.add(Calendar.MONTH, quantity);
+	  	if (recTag.contains("y")) date.add(Calendar.YEAR, quantity);
+	  }
+	  int auxY = date.get(Calendar.YEAR);
+	  int aux1 = date.get(Calendar.MONTH) + 1;
+	  int aux2 = date.get(Calendar.DAY_OF_MONTH);
+	  String auxM = aux1 < 10 ? "0" + aux1 : "" + aux1;
+	  String auxD = aux2 < 10 ? "0" + aux2 : "" + aux2;
+	  textArea.setSelectedText("- due:" + auxY + "-" + auxM + "-" + auxD);
+	  String newLine = line.substring(16, line.length());
+	  textArea.setSelectedText(newLine);
+	}
+	textArea.goToStartOfWhiteSpace(false);
+	textArea.goToNextLine(false);
+}

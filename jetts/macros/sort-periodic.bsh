@@ -1,0 +1,23 @@
+totNumLines = textArea.getLineCount();
+lines = new ArrayList();
+numLines = 0;
+for (i = 0; i < totNumLines; i++) {	
+	line = buffer.getLineText(i);
+	if (line.length() > 0) {
+		lines.add(line);
+		numLines++;
+	}		
+}
+
+Collections.sort(lines);
+
+newContent = "";
+for (i = 0; i < numLines; i++) {
+	newContent += lines.get(i);
+	if (i != numLines - 1) { 
+		newContent += '\n';
+	}
+}
+
+textArea.setText(newContent);
+textArea.setCaretPosition(0);

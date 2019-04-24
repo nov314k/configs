@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE MODES SYSTEM "catalog.dtd">
+
+<MODES>
+
+<!-- Add lines like the following, one for each edit mode you add: -->
+<!-- <MODE NAME="foo" FILE="foo.xml" FILE_NAME_GLOB="*.foo" /> -->
+
+<MODE
+	NAME="pmd-txt"
+	FILE="p-markdown.xml"
+	FILE_NAME_GLOB="{*.pmd.txt}" 
+/>
+
+</MODES>

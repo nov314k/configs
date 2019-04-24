@@ -1,0 +1,26 @@
+selectedLines = textArea.getSelectedLines().length;
+if (selectedLines == 1) {
+	textArea.goToStartOfLine(false);
+	int caretPosition = textArea.getCaretPosition();
+	if (caretPosition != 0) {
+		textArea.goToEndOfLine(true);
+		sel = textArea.getSelectedText();
+		textArea.setSelectedText("");
+		textArea.goToStartOfLine(false);
+		textArea.backspace();
+		textArea.goToStartOfLine(false);
+		buffer.insert(textArea.getCaretPosition(), sel + "\n");
+		textArea.goToPrevLine(false);
+	}
+} else {
+	textArea.goToEndOfLine(true);
+	sel = textArea.getSelectedText();
+	textArea.setSelectedText("");	
+	textArea.goToStartOfLine(false);
+	textArea.backspace();
+	textArea.goToPrevLine(false);
+	buffer.insert(textArea.getCaretPosition(), sel + "\n");
+	for (int i = 0; i < selectedLines; i++) textArea.goToPrevLine(false);
+	textArea.goToStartOfLine(false);
+	for (int i = 0; i < selectedLines; i++) textArea.goToNextLine(true);
+}

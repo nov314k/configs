@@ -1,0 +1,32 @@
+totNumLines = textArea.getLineCount();
+numLines = 0;
+topLines = 0;
+tops = new ArrayList();
+lines = new ArrayList();
+for (i = 0; i < totNumLines; i++) {	
+	line = buffer.getLineText(i);
+	if (!line.contains("@pri")) {
+		lines.add(line);
+		numLines++;
+		if (line.contains("@top")) {
+			topLines++;
+			newLine = line.replace("@top", "@pri");
+			tops.add(newLine);
+		}
+	}		
+}
+
+newContent = "";
+for (i = 0; i < topLines; i++) {
+	newContent += tops.get(i) + '\n';
+}
+
+for (i = 0; i < numLines; i++) {
+	newContent += lines.get(i);
+	if (i != numLines - 1) {
+		newContent += '\n';
+	}
+}
+
+textArea.setText(newContent);
+textArea.setCaretPosition(0);
