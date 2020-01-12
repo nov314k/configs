@@ -2,55 +2,44 @@
 " Basic settings
 """"""""""""""""
 
-set encoding=utf-8		" Encoding
-set laststatus=2		" Always show the status bar
-syntax enable			" Enable syntax highlighting
-set number				" Show line numbers
-set showcmd				" Show command in bottom bar
-						" Powerline will override this
-set cursorline			" Highlight current line
-filetype indent on		" Load filetype-specific indent files
-set wildmenu			" Visual autocomplete for command menu
-set lazyredraw			" Redraw only when needed
-set showmatch			" Highlight matching {[()]}
-set nocompatible		" Required by Vundle
+set encoding=utf-8      " Encoding
+set laststatus=2        " Always show the status bar
+syntax enable           " Enable syntax highlighting
+set number              " Show line numbers
+set showcmd             " Show command in bottom bar
+                        " Powerline will override this
+set cursorline          " Highlight current line
+filetype indent on      " Load filetype-specific indent files
+set wildmenu            " Visual autocomplete for command menu
+set lazyredraw          " Redraw only when needed
+set showmatch           " Highlight matching {[()]}
+set nocompatible        " Required by Vundle
 
 " Highlight 80+ columns
 set colorcolumn=80
 highlight ColorColumn ctermbg=White ctermfg=DarkRed
 
-" highlight last inserted text
-nnoremap gV `[v`]
-
 """"""
 " Tabs
 """"""
 
-set tabstop=4			" Number of visual spaces per <TAB>
-set softtabstop=4		" Number of spaces in a tab when editing
-set expandtab			" Tabs are spaces
+set tabstop=4           " Number of visual spaces per <TAB>
+set softtabstop=4       " Number of spaces in a tab when editing
+set expandtab           " Tabs are spaces
 
 """""""""""
 " Searching
 """""""""""
 
-set incsearch			" Search as characters are entered
-set hlsearch			" Highlight matches
-
-" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>		
+set incsearch           " Search as characters are entered
+set hlsearch            " Highlight matches
 
 """""""""
 " Folding
 """""""""
 set foldenable          " Enable folding
-"set foldlevelstart=10   " Starting fold level for opening a new buffer
-"set foldnestmax=10      " 10 nested fold max
 set foldmethod=indent   " Folding based on indent level
-set foldlevel=99
-
-" space open/closes folds
-" nnoremap <space> za
+set foldlevel=99        " Folding level (depth)
 
 """"""""""
 " Movement
@@ -87,7 +76,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Powerline plugin
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " Nerdtree plugin
 Plugin 'scrooloose/nerdtree'
