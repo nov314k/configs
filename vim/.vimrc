@@ -95,7 +95,3 @@ call vundle#end()
 
 " To revert 'filetype off' above
 filetype plugin indent on
-
-"""""""""""
-" Functions
-"""""""""""
