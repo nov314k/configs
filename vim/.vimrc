@@ -3,7 +3,6 @@
 """"""""""""""""
 
 set encoding=utf-8      " Encoding
-set laststatus=2        " Always show the status bar
 syntax enable           " Enable syntax highlighting
 set number              " Show line numbers
 set showcmd             " Show command in bottom bar
@@ -19,13 +18,15 @@ set nocompatible        " Required by Vundle
 set colorcolumn=80
 highlight ColorColumn ctermbg=White ctermfg=DarkRed
 
-""""""
-" Tabs
-""""""
+"""""""""""""
+" Status line
+"""""""""""""
 
-set tabstop=4           " Number of visual spaces per <TAB>
-set softtabstop=4       " Number of spaces in a tab when editing
-set expandtab           " Tabs are spaces
+set laststatus=2        " Always show the status bar
+
+" When entering and leaving insert mode
+au InsertEnter * hi statusline term=reverse ctermfg=9 ctermbg=15
+au InsertLeave * hi statusline term=reverse ctermfg=18 ctermbg=15
 
 """""""""""
 " Searching
@@ -33,6 +34,14 @@ set expandtab           " Tabs are spaces
 
 set incsearch           " Search as characters are entered
 set hlsearch            " Highlight matches
+
+""""""
+" Tabs
+""""""
+
+set tabstop=4           " Number of visual spaces per <TAB>
+set softtabstop=4       " Number of spaces in a tab when editing
+set expandtab           " Tabs are spaces
 
 """""""""
 " Folding
@@ -86,3 +95,7 @@ call vundle#end()
 
 " To revert 'filetype off' above
 filetype plugin indent on
+
+"""""""""""
+" Functions
+"""""""""""
