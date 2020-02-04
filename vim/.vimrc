@@ -74,8 +74,14 @@ nmap <C-n> :NERDTreeToggle<CR>
 " Invisibles
 """"""""""""
 
-listchars=eol:$,tab:>.,trail:~,extends:>,precedes:<
-listchars
+set listchars=eol:$,tab:>.,trail:~,extends:>,precedes:<
+set list
+
+"""""""""""""""
+" Colour scheme
+"""""""""""""""
+
+colorscheme desert
 
 """"""""
 " Vundle
