@@ -70,6 +70,13 @@ nnoremap <C-H> <C-W><C-H>
 
 nmap <C-n> :NERDTreeToggle<CR>
 
+""""""""""""
+" Invisibles
+""""""""""""
+
+listchars=eol:$,tab:>.,trail:~,extends:>,precedes:<
+listchars
+
 """"""""
 " Vundle
 """"""""
