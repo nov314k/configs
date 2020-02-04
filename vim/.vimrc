@@ -83,6 +83,12 @@ set list
 
 colorscheme desert
 
+"""""""""""""""""""""""""""""""""""""""
+" Getting backspsace to work on Windows
+"""""""""""""""""""""""""""""""""""""""
+
+set bs=2
+
 """"""""
 " Vundle
 """"""""
