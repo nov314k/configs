@@ -89,6 +89,12 @@ colorscheme desert
 
 set bs=2
 
+""""""""""
+" GUI Font
+""""""""""
+
+set guifont=Liberation\ Mono:h11
+
 """"""""
 " Vundle
 """"""""
